@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="author" content="Christopher D. Cordisco">
+
+    <title>State Diagram Generator</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="resources/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon">
+
+    <!-- Style Sheets -->
+    <!-- Libraries -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="vendor/codemirror/codemirror.css">
+    <link rel="stylesheet" href="vendor/codemirror/addon/lint/lint.css">
+
+    <link rel="stylesheet" href="vendor/jointjs/joint.min.css">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="resources/css/main.css">
+
+    <!-- Scripts -->
+    <!-- Libraries -->
+    <script src="vendor/jointjs/joint.min.js"></script>
+    <script src="vendor/jointjs/joint.shapes.fsa.min.js"></script>
+    <script src="vendor/jointjs/joint.layout.DirectedGraph.min.js"></script>
+
+    <script src="vendor/jsonlint/jsonlint.js"></script>
+    <script src="vendor/jsonlint/formatter.js"></script>
+
+    <script src="vendor/codemirror/codemirror.js"></script>
+    <script src="vendor/codemirror/mode/javascript.js"></script>
+    <script src="vendor/codemirror/addon/lint/lint.js"></script>
+    <script src="vendor/codemirror/addon/lint/json-lint.js"></script>
+
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Custom -->
+    <script src="resources/js/control.js"></script>
+    <script src="resources/js/generator/stateDiagram.js"></script>
+    <script src="resources/js/utils/utils.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div id="mainNav" class="container">
+        <div class="navbar-header custom-navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">State Diagram Generator</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a id="widen" href="#"><span class="glyphicon glyphicon-resize-full"></span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="githubLink"><a target="_blank" href="https://github.com/cdcor/State-Diagram-Generator">&nbsp;</a></li>
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div id="mainContent" class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <form action="" role="form">
+                    <div class="form-group row">
+                        <div class="col-xs-5">
+                            <button type="button" id="formatJson" class="btn btn-default btn-block">Format JSON</button>
+                        </div>
+                        <div class="col-xs-7">
+                            <button type="button" id="generateStateDiagram" class="btn btn-primary btn-block">Generate</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <!-- <label for="stateDiagramJson">Definition</label> -->
+                        <div id="stateDiagramJson" class="form-control">
+                            <textarea name="stateDiagramJson" id="stateDiagramJsonTextarea" class="form-control" rows="10">
+{
+    "states": [
+        { "label": "s" },
+        { "label": "q1", "accept": true },
+        { "label": "q2" },
+        { "label": "r1", "accept": true },
+        { "label": "r2" }
+    ],
+    "transitions": [
+        { "from": "s", "to": "q1", "label": "epsilon" },
+        { "from": "s", "to": "r1", "label": "epsilon" },
+        { "from": "q1", "to": "q1", "label": "a" },
+        { "from": "q1", "to": "q2", "label": "b" },
+        { "from": "q2", "to": "q2", "label": "b" },
+        { "from": "q2", "to": "q1", "label": "a" },
+        { "from": "r1", "to": "r1", "label": "b" },
+        { "from": "r1", "to": "r2", "label": "a" },
+        { "from": "r2", "to": "r2", "label": "a" },
+        { "from": "r2", "to": "r1", "label": "b" }
+    ],
+    "start": "s"
+}
+                            </textarea>
+                        </div>
+                    </div>
+                    <div id= "alertContainer" class="form-group"></div>
+                </form>
+            </div>
+            <div class="col-sm-8">
+                <div class="panel panel-default">
+                    <div id="stateDiagramContainer" class="panel-body">
+                        <div id="stateDiagram"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

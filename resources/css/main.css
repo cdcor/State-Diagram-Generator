@@ -1,0 +1,36 @@
+
+
+
+#mainContent {
+    margin-top: 70px;
+}
+
+#stateDiagramJson {
+    padding: 1px;
+    height: 400px;
+}
+
+.CodeMirror {
+    font-family: Consolas, monospace;
+    font-size: 13px;
+}
+
+#stateDiagramContainer {
+    overflow-x: scroll;
+}
+
+svg {
+    display: block;
+    margin: auto;
+}
+
+.githubLink {
+    background-image: url(../images/GitHub-Mark-Light-32px.png);
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5;
+}
+.githubLink:hover {
+    opacity: 1;
+}
